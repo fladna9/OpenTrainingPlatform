@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h3>{% block title %}Please log in to continue{% endblock %}</h3>
+{% endblock %}
+
+{% block content %}
+    {%  if message %}
+    <div class="alert alert-danger" role="alert">
+        {{ message }}
+</div>
+{% endif %}
+<form action="/login" method="POST">
+<input type="password" name="adminPassword" />
+<input type="submit" />
+</form>
+{% endblock %}

@@ -1,0 +1,37 @@
+  Hostname: TEST-Hostname
+  TrainerName: TEST-Trainer
+  TrainerEmail: TEST-traienr@example.com
+  TrainerWebsite: TEST-https://trainer.com
+  TrainerCompany: TEST-Trainer Corporation
+  TrainerCompanyWebsite: TEST-https://trainer-company.com
+  PracticalPlatformURL: TEST-https://training-platform.com
+  SessionStartDate: TEST-2023-01-01
+  SessionEndDate: TEST-2023-01-01
+  ToolsURL: TEST-https://training-tools.com
+  AdminURLVisible: True
+  AdminURL: /test-admin
+  AdminPassword: TEST-password
+  DefaultLanguage: TEST-EN
+  Theme: bootstrap.css
+  ThemeJS: bootstrap.js
+  Sessions:
+    - Session1:
+      SessionCode: TEST1-CODE
+      SessionName: TEST1-NAME
+      SessionLogo: TEST1-LOGO
+      SessionTextbook: TEST1-TB
+      SessionTextbookUpdateDate: TEST1-TBU
+      SessionPracticalBook: TEST1-SPB
+      SessionPracticalBookUpdateDate: TEST1-SPBU
+      SessionCenterLogo: TEST1-LOGO2
+      SessionCenterURL: TEST1-CENTERURL
+    - Session2:
+      SessionCode: TEST2-CODE
+      SessionName: TEST2-NAME
+      SessionLogo: TEST2-LOGO
+      SessionTextbook: TEST2-TB
+      SessionTextbookUpdateDate: TEST2-TBU
+      SessionPracticalBook: TEST2-SPB
+      SessionPracticalBookUpdateDate: TEST2-SPBU
+      SessionCenterLogo: TEST2-LOGO2
+      SessionCenterURL: TEST2-CENTERURL
