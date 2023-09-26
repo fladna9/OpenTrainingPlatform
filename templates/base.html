@@ -7,28 +7,33 @@
 <body>
   <header>
       <div class="">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 1em;">
-  <a class="navbar-brand" href="#">OpenTrainingPlatform on {{ config["Hostname"] }}</a>
+  <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark" style="padding: 1em;">
+  <a class="navbar-brand" href="/">{{ config["Hostname"] }}</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/trainer">{{ config["TrainerName"] }}</a>
+        <a class="nav-link" href="/">Accueil</a>
       </li>
         <li class="nav-item">
-        <a class="nav-link" href="/textbook">Textbook</a>
+        <a class="nav-link" href="/textbook">Cours</a>
       </li>
         <li class="nav-item">
-        <a class="nav-link" href="/exercisebook">Exercisebook</a>
+        <a class="nav-link" href="/exercisebook">Cahier de TPs</a>
+      </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/vms">VMs</a>
       </li>
         <li class="nav-item">
-        <a class="nav-link" href="/tools">Tools</a>
+        <a class="nav-link" href="/tools">Outils</a>
       </li>
+    {% if config["Sessions"][config["ActiveSession"]]["SessionQuizzURL"] %}
+        <li class="nav-item">
+        <a class="nav-link" href="{{ config["Sessions"][config["ActiveSession"]]["SessionQuizzURL"] }}">Quizz en ligne</a>
+      </li>
+      {% endif %}
         {%  if config["AdminURLVisible"] == False %}
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Administration</a>
@@ -43,20 +48,21 @@
         <a class="nav-link" href="/lorem">Lorem</a>
       </li>
         {% endif %}
+
     </ul>
   </div>
 </nav>
       </div>
   </header>
-  <div class="container" style="margin: 2em;">
+  <div class="container">
   {% block header %}{% endblock %}
   {% block content %}{% endblock %}
   </div>
 <footer>
-    <div class="" style="text-align: center; margin: 3em">
-        <h6>All content here is copyrighted by rightful owners.</h6>
-        <h6>Trainingbooks and exercisebooks are copyrighted by {{ config["TrainerCompany"] }}. All rights reserved.</h6>
-    <p>Open Training Platform is Open-Source and distributed under GNU/GPLv3. More info and updates on Github</p>
+    <div class="" style="text-align: center; margin: 3em; margin-top: 5em;">
+        <h6>Tout le contenu sur cette plateforme appartient à leurs propriétaires respectifs.</h6>
+        <h6>Les cours et les cahiers de TPs appartiennent à {{ config["TrainerCompany"] }}. Tous droits réservés.</h6>
+    <p>Open Training Platform est Open-Source et distribué sous GNU/GPLv3. Plus d'informations sur <a target="_blank" href="https://github.com/fladna9/OpenTrainingPlatform/">GitHub</a></p>
     </div>
 </footer>
 </div>

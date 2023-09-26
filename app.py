@@ -4,15 +4,12 @@ from flask import Flask, render_template, request, redirect, url_for, make_respo
 from data.Configuration import *
 test = True
 
-
+configuration_filename = ""
 if test:
-    config = ConfigFromYAML(filename="tests/testConfiguration.yaml")
-    ConfigToYAML(config, filename="tests/ConfigToYAML.yaml")
-    config["TestMode"] = True
+    configuration_filename = "tests/testConfiguration.yaml"
 else:
-    config = ConfigFromYAML(filename="config/config.yaml")
-    config["TestMode"] = False
-
+    configuration_filename = "config/config.yaml"
+config = ConfigFromYAML(filename=configuration_filename)
 adminCookies = dict()
 
 app = Flask(__name__)
@@ -28,16 +25,25 @@ def loremPage():
     return render_template("lorem.html", theme=config["Theme"], themejs=config["ThemeJS"], config=config)
 
 
-@app.route(config["AdminURL"])
+@app.route(config["AdminURL"], methods=['POST', 'GET'])
 def adminPage():
     cookie = getadmincookie()
     try:
         if adminCookies[cookie]:
-            return render_template("admin.html", theme=config["Theme"], themejs=config["ThemeJS"], config=config)
+            if request.method == 'POST':
+                print("POSTTTTT")
+                print("POSTDATA: " + request.form["Hostname"])
+                for key in request.form:
+                    config[key] = request.form[key]
+                    ConfigToYAML(config, configuration_filename)
+                return render_template("admin.html", theme=config["Theme"], themejs=config["ThemeJS"], config=config)
+            else:
+                return render_template("admin.html", theme=config["Theme"], themejs=config["ThemeJS"], config=config)
         else:
-            return render_template("login.html", theme=config["Theme"], themejs=config["ThemeJS"], config=config, message="Cookie expired, please reconnect")
-    except:
-        return render_template("login.html", theme=config["Theme"], themejs=config["ThemeJS"], config=config, message="Please login to continue")
+            return render_template("login.html", theme=config["Theme"], themejs=config["ThemeJS"], config=config, message="Cookie expiré, veuillez vous reconnecter")
+    except Exception as exception:
+        print(exception)
+        return render_template("login.html", theme=config["Theme"], themejs=config["ThemeJS"], config=config, message="Merci de vous connecter pour continuer")
 
 
 @app.route("/login", methods=['POST'])
@@ -50,9 +56,9 @@ def handlePOSTLogin():
             resp.set_cookie('adminCookie', cookie)
             return resp
         else:
-            return render_template("login.html", theme=config["Theme"], themejs=config["ThemeJS"], config=config, message="Bad username or password")
+            return render_template("login.html", theme=config["Theme"], themejs=config["ThemeJS"], config=config, message="Échec d'authentification")
     else:
-        return render_template("login.html", theme=config["Theme"], themejs=config["ThemeJS"], config=config, message="Use POST method please.")
+        return render_template("login.html", theme=config["Theme"], themejs=config["ThemeJS"], config=config, message="Méthode HTTP non autorisée")
 
 
 def getadmincookie():

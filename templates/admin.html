@@ -1,9 +1,63 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h3>{% block title %}Administration portal{% endblock %}</h3>
+    <h3>{% block title %}Administration - Open Training Platform{% endblock %}</h3>
 {% endblock %}
 
 {% block content %}
-
+    <div style="display: flex; flex-direction: row;">
+        <div style="margin: 3em;">
+            <form action="{{ config["AdminURL"] }}" method="POST">
+                <div class="form-group" style="margin-top: 1.5em;">
+                    <h3>Configuration de base</h3>
+                    <label>Nom d'hôte</label>
+                    <input type="text" class="form-control" name="Hostname" placeholder="Hostname" value="{{ config["Hostname"] }}">
+                    <small class="form-text text-muted">Texte affiché en haut à gauche dans la barre de navigation.</small><br>
+                    <label>URL de la plateforme de TP, si il y en a une.</label>
+                    <input type="text" class="form-control" name="PracticalPlatformURL" placeholder="PracticalPlatformURL" value="{{ config["PracticalPlatformURL"] }}">
+                    <label>URL des outils de TP, si il y en a une.</label>
+                    <input type="text" class="form-control" name="ToolsURL" placeholder="ToolsURL" value="{{ config["ToolsURL"] }}">
+                    <label>Langue par défaut (non implémenté)</label>
+                    <input type="text" class="form-control" disabled name="DefaultLanguage" placeholder="DefaultLanguage" value="{{ config["DefaultLanguage"] }}">
+                    <label>Thème</label>
+                    <input type="text" class="form-control"  name="Theme" placeholder="Theme" value="{{ config["Theme"] }}">
+                    <label>Thème - Javascript associé</label>
+                    <input type="text" class="form-control"  name="ThemeJS" placeholder="ThemeJS" value="{{ config["ThemeJS"] }}">
+                </div>
+                <div class="form-group" style="margin-top: 1.5em;">
+                    <label>Configuration de l'administration </label>
+                    <label>Visibilité de la page dans le menu</label>
+                    <input type="text" class="form-control" name="AdminURLVisible" placeholder="AdminURLVisible" value="{{ config["AdminURLVisible"] }}">
+                    <label>URL de la page d'admin</label>
+                    <input type="text" class="form-control" name="AdminURL" placeholder="AdminURL" value="{{ config["AdminURL"] }}">
+                    <label>Mot de passe</label>
+                    <input type="text" class="form-control" name="AdminPassword" placeholder="AdminPassword" value="{{ config["AdminPassword"] }}">
+                    <small class="form-text text-muted">Mot de passe de la session d'administration.</small>
+                </div>
+                <div class="form-group" style="margin-top: 1.5em;">
+                    <label>Informations sur le formateur</label>
+                    <input type="text" class="form-control" name="TrainerName" placeholder="TrainerName" value="{{ config["TrainerName"] }}">
+                    <input type="text" class="form-control" name="TrainerWebsite" placeholder="TrainerWebsite" value="{{ config["TrainerWebsite"] }}">
+                    <input type="text" class="form-control" name="TrainerEmail" placeholder="TrainerEmail" value="{{ config["TrainerEmail"] }}">
+                    <input type="text" class="form-control" name="TrainerCompany" placeholder="TrainerCompany" value="{{ config["TrainerCompany"] }}">
+                    <input type="text" class="form-control" name="TrainerCompanyWebsite" placeholder="TrainerCompanyWebsite" value="{{ config["TrainerCompanyWebsite"] }}">
+                    <small class="form-text text-muted">Texte affiché en page d'accueil</small>
+                </div>
+                <input type="submit">Sauvegarder</input>
+            </form>
+        </div>
+        <div style="margin: 3em;">
+            <form action="{{ config["AdminURL"] }}" method="POST">
+                <div class="form-group" style="margin-top: 1.5em;">
+                    <h3>Configuration des sessions</h3>
+                    <select name="SessionActive">
+                        {% for session in config['Sessions'] %}
+                        <option value="{{ session }}">{{ session["SessionName"] }}  - {{ session["SessionCode"] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <input type="submit">Sauvegarder</input>
+            </form>
+        </div>
+    </div>
 {% endblock %}

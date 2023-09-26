@@ -1,12 +1,31 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h3>{% block title %}Welcome to Open Training Platform{% endblock %}</h3>
+  <h3>{% block title %}Bienvenue sur Open Training Platform{% endblock %}</h3>
 {% endblock %}
 
 {% block content %}
   <div>
-      <h4>Current activated training is:</h4>
-      <h5>Remember to sign attendee sheet every afternoon please.</h5>
+        <div style="display: flex; flex-direction: row; padding: 1em" >
+          <div style="margin: 1em">
+              <img height="64" src="{{ url_for('static', filename=config["Sessions"][config["ActiveSession"]]["SessionLogo"])  }}" />
+          </div>
+          <div style="margin: 1em; align-items: center;">
+              <p>Session de formation organisée par <a target="_blank" href="{{ config["Sessions"][config["ActiveSession"]]["SessionCenterURL"] }}">{{ config["Sessions"][config["ActiveSession"]]["SessionCenterName"] }}</a></p>
+              <p>Formateur: {{ config["TrainerName"] }} - <a target="_blank" href="mailto:{{ config["TrainerEmail"] }}">mél</a> - <a target="_blank" href="{{ config["TrainerWebsite"] }}">site</a></p>
+          </div>
+      </div>
+
+      <div style="display: flex; flex-direction: row; padding: 1em" >
+          <div style="margin: 1em">
+              <img height="64" src="{{ url_for('static', filename=config["Sessions"][config["ActiveSession"]]["SessionLogo"])  }}" />
+          </div>
+          <div style="margin: 1em;  align-items: center;">
+              <p>Intitulé: {{ config["Sessions"][config["ActiveSession"]]["SessionName"] }} </p>
+              <p>Le code de session est: {{ config["Sessions"][config["ActiveSession"]]["SessionCode"] }}</p>
+          </div>
+      </div>
+
+  <h5>Merci de signer la feuille d'émargement chaque demi-journée.</h5>
   </div>
 {% endblock %}

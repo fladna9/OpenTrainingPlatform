@@ -1,37 +1,42 @@
-  Hostname: TEST-Hostname
-  TrainerName: TEST-Trainer
-  TrainerEmail: TEST-traienr@example.com
-  TrainerWebsite: TEST-https://trainer.com
-  TrainerCompany: TEST-Trainer Corporation
-  TrainerCompanyWebsite: TEST-https://trainer-company.com
-  PracticalPlatformURL: TEST-https://training-platform.com
-  SessionStartDate: TEST-2023-01-01
-  SessionEndDate: TEST-2023-01-01
-  ToolsURL: TEST-https://training-tools.com
-  AdminURLVisible: True
-  AdminURL: /test-admin
-  AdminPassword: TEST-password
-  DefaultLanguage: TEST-EN
-  Theme: bootstrap.css
-  ThemeJS: bootstrap.js
-  Sessions:
-    - Session1:
-      SessionCode: TEST1-CODE
-      SessionName: TEST1-NAME
-      SessionLogo: TEST1-LOGO
-      SessionTextbook: TEST1-TB
-      SessionTextbookUpdateDate: TEST1-TBU
-      SessionPracticalBook: TEST1-SPB
-      SessionPracticalBookUpdateDate: TEST1-SPBU
-      SessionCenterLogo: TEST1-LOGO2
-      SessionCenterURL: TEST1-CENTERURL
-    - Session2:
-      SessionCode: TEST2-CODE
-      SessionName: TEST2-NAME
-      SessionLogo: TEST2-LOGO
-      SessionTextbook: TEST2-TB
-      SessionTextbookUpdateDate: TEST2-TBU
-      SessionPracticalBook: TEST2-SPB
-      SessionPracticalBookUpdateDate: TEST2-SPBU
-      SessionCenterLogo: TEST2-LOGO2
-      SessionCenterURL: TEST2-CENTERURL
+ActiveSession: 0
+AdminPassword: pw
+AdminURL: /admin
+AdminURLVisible: 'True'
+DefaultLanguage: TEST-EN
+Hostname: OpenTrainingPlatform
+PracticalPlatformURL: httpss://training-platform.com
+SessionEndDate: TEST-2023-01-01
+SessionStartDate: TEST-2023-01-01
+Sessions:
+- Session1: null
+  SessionCenterLogo: TEST1-LOGO2
+  SessionCenterName: TEST-CENTERNAME
+  SessionCenterURL: TEST1-CENTERURL
+  SessionCode: TEST1-CODE
+  SessionLogo: img/test.png
+  SessionName: TEST1-NAME
+  SessionPracticalBook: TEST1-SPB
+  SessionPracticalBookUpdateDate: TEST1-SPBU
+  SessionQuizzURL: TEST1-QUIZZ
+  SessionTextbook: TEST1-TB
+  SessionTextbookUpdateDate: TEST1-TBU
+- Session2: null
+  SessionCenterLogo: TEST2-LOGO2
+  SessionCenterName: TEST-CENTERNAME
+  SessionCenterURL: TEST2-CENTERURL
+  SessionCode: TEST2-CODE
+  SessionLogo: TEST2-LOGO
+  SessionName: TEST2-NAME
+  SessionPracticalBook: TEST2-SPB
+  SessionPracticalBookUpdateDate: TEST2-SPBU
+  SessionQuizzURL: TEST1-QUIZZ
+  SessionTextbook: TEST2-TB
+  SessionTextbookUpdateDate: TEST2-TBU
+Theme: bootstrap.css
+ThemeJS: bootstrap.js
+ToolsURL: httpss://training-tools.com
+TrainerCompany: TEST-Trainer Corporation
+TrainerCompanyWebsite: TEST-https://trainer-company.com
+TrainerEmail: TEST-trainer@example.com
+TrainerName: Formateur
+TrainerWebsite: httpss://formateur.com
