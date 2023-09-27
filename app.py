@@ -1,4 +1,6 @@
 import uuid
+import re
+
 from flask import Flask, render_template, request, redirect, url_for, make_response
 
 from data.Configuration import *
@@ -31,10 +33,11 @@ def adminPage():
     try:
         if adminCookies[cookie]:
             if request.method == 'POST':
-                print("POSTTTTT")
-                print("POSTDATA: " + request.form["Hostname"])
                 for key in request.form:
-                    config[key] = request.form[key]
+                    if re.match( "\d+",request.form[key]):
+                        config[key] = int(request.form[key])
+                    else:
+                        config[key] = request.form[key]
                     ConfigToYAML(config, configuration_filename)
                 return render_template("admin.html", theme=config["Theme"], themejs=config["ThemeJS"], config=config)
             else:
@@ -44,6 +47,27 @@ def adminPage():
     except Exception as exception:
         print(exception)
         return render_template("login.html", theme=config["Theme"], themejs=config["ThemeJS"], config=config, message="Merci de vous connecter pour continuer")
+
+
+@app.route("/session/")
+def handlePOSTSession():
+    cookie = getadmincookie()
+    try:
+        if adminCookies[cookie]:
+            if request.method == 'POST':
+                for key in request.form:
+                    if re.match("\d+", request.form[key]):
+                        config[key] = int(request.form[key])
+                    else:
+                        config[key] = request.form[key]
+                    ConfigToYAML(config, configuration_filename)
+                return redirect(config["AdminURL"])
+            else:
+                return redirect(config["AdminURL"])
+        else:
+            return redirect(config["AdminURL"])
+    except:
+        return redirect(config["AdminURL"])
 
 
 @app.route("/login", methods=['POST'])

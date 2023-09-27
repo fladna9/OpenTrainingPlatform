@@ -43,20 +43,73 @@
                     <input type="text" class="form-control" name="TrainerCompanyWebsite" placeholder="TrainerCompanyWebsite" value="{{ config["TrainerCompanyWebsite"] }}">
                     <small class="form-text text-muted">Texte affiché en page d'accueil</small>
                 </div>
-                <input type="submit">Sauvegarder</input>
+                <div class="form-group" style="margin-top: 1.5em;">
+                <button type="submit" class="btn btn-primary">Sauvegarder</button>
+                </div>
             </form>
         </div>
         <div style="margin: 3em;">
             <form action="{{ config["AdminURL"] }}" method="POST">
                 <div class="form-group" style="margin-top: 1.5em;">
                     <h3>Configuration des sessions</h3>
-                    <select name="SessionActive">
+                    <label>Session active</label><br>
+                    <select class="form-select" name="ActiveSession">
                         {% for session in config['Sessions'] %}
-                        <option value="{{ session }}">{{ session["SessionName"] }}  - {{ session["SessionCode"] }}</option>
+                            {% if config['Sessions'].index(session) == config["ActiveSession"] %}
+                                <option value="{{ config['Sessions'].index(session) }}" selected>{{ config['Sessions'].index(session) }} - {{ session["SessionName"] }} - {{ session["SessionCode"] }}</option>
+                            {% else %}
+                                <option value="{{ config['Sessions'].index(session) }}">{{ config['Sessions'].index(session) }} - {{ session["SessionName"] }} - {{ session["SessionCode"] }}</option>
+                            {% endif %}
                         {% endfor %}
                     </select>
                 </div>
-                <input type="submit">Sauvegarder</input>
+                <div class="form-group" style="margin-top: 1.5em;">
+                    <button type="submit" class="btn btn-primary">Sauvegarder</button>
+                </div>
+            </form>
+            <form action="" method="POST">
+                <div class="form-group" style="margin-top: 1.5em;">
+                    <label>Éditer une session</label><br>
+                    <select class="form-select">
+                        {% for session in config['Sessions'] %}
+                        {% if config['Sessions'].index(session) == config["ActiveSession"] %}
+                                <option value="{{ config['Sessions'].index(session) }}" selected>{{ config['Sessions'].index(session) }} - {{ session["SessionName"] }} - {{ session["SessionCode"] }}</option>
+                            {% else %}
+                                <option value="{{ config['Sessions'].index(session) }}">{{ config['Sessions'].index(session) }} - {{ session["SessionName"] }} - {{ session["SessionCode"] }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+            </form>
+            <form action="" method="POST">
+                <div class="form-group" style="margin-top: 1.5em;">
+                    <input type="text" class="form-control" name="SessionID" style="display: none;" hidden value="{{ config }}">
+                <label>Nom du centre de formation</label><br>
+                <input type="text" class="form-control" name="SessionCenterName" placeholder="SessionCenterName" value="{{ config["SessionCenterName"] }}">
+                <label>Lien du centre de formation</label><br>
+                <input type="text" class="form-control" name="SessionCenterURL" placeholder="SessionCenterURL" value="{{ config["SessionCenterURL"] }}">
+                <label>Logo du centre de formation</label><br>
+                <input type="text" class="form-control" name="SessionCenterLogo" placeholder="SessionCenterLogo" value="{{ config["SessionCenterLogo"] }}">
+                <label>Code de session</label><br>
+                <input type="text" class="form-control" name="SessionCode" placeholder="SessionCode" value="{{ config["SessionCode"] }}">
+                <label>Nom de la session</label><br>
+                <input type="text" class="form-control" name="SessionName" placeholder="SessionName" value="{{ config["SessionName"] }}">
+                <label>Logo de la session</label><br>
+                <input type="text" class="form-control" name="SessionLogo" placeholder="SessionLogo" value="{{ config["SessionLogo"] }}">
+                <label>Cahier de TP - Chemin d'accès (relatif par rapport au dossier static de l'application)</label><br>
+                <input type="text" class="form-control" name="SessionPracticalBook" placeholder="SessionPracticalBook" value="{{ config["SessionPracticalBook"] }}">
+                <label>Cahier de TP - Date de mise à jour (format YYYY-MM-DD)</label><br>
+                <input type="text" class="form-control" name="SessionPracticalBookUpdateDate" placeholder="SessionPracticalBookUpdateDate" value="{{ config["SessionPracticalBookUpdateDate"] }}">
+                <label>Support de cours - Chemin d'accès</label><br>
+                <input type="text" class="form-control" name="SessionTextbook" placeholder="SessionTextbook" value="{{ config["SessionTextbook"] }}">
+                <label>Support de cours - Date de mise à jour</label><br>
+                <input type="text" class="form-control" name="SessionTextbookUpdateDate" placeholder="SessionTextbookUpdateDate" value="{{ config["SessionTextbookUpdateDate"] }}">
+                <label>Lien du Quizz de la session</label><br>
+                <input type="text" class="form-control" name="SessionQuizzURL" placeholder="SessionQuizzURL" value="{{ config["SessionQuizzURL"] }}">
+                </div>
+                <div class="form-group" style="margin-top: 1.5em;">
+                    <button type="submit" class="btn btn-primary">Sauvegarder</button>
+                </div>
             </form>
         </div>
     </div>

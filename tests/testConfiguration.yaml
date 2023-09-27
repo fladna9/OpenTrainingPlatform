@@ -1,12 +1,23 @@
-ActiveSession: 0
+ActiveSession: 1
 AdminPassword: pw
 AdminURL: /admin
 AdminURLVisible: 'True'
 DefaultLanguage: TEST-EN
 Hostname: OpenTrainingPlatform
 PracticalPlatformURL: httpss://training-platform.com
+SessionCenterLogo: ''
+SessionCenterName: ''
+SessionCenterURL: ''
+SessionCode: ''
 SessionEndDate: TEST-2023-01-01
+SessionLogo: ''
+SessionName: ''
+SessionPracticalBook: ''
+SessionPracticalBookUpdateDate: ''
+SessionQuizzURL: ''
 SessionStartDate: TEST-2023-01-01
+SessionTextbook: ''
+SessionTextbookUpdateDate: ''
 Sessions:
 - Session1: null
   SessionCenterLogo: TEST1-LOGO2
